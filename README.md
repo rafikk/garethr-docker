@@ -21,26 +21,26 @@ The next step is probably to install a docker image, for this we have a defined 
 
     docker::image { 'base': }
 
-This is equivalent to running `docker pull base`.  
-This is downloading a large binary so on first run can take a while.  
-For that reason this define turns off the default 5 minute timeout for exec.  
-Takes an optional parameter for installing image tags that is the equivalent to running `docker pull -t="precise" ubuntu`:  
+This is equivalent to running `docker pull base`.
+This is downloading a large binary so on first run can take a while.
+For that reason this define turns off the default 5 minute timeout for exec.
+Takes an optional parameter for installing image tags that is the equivalent to running `docker pull -t="precise" ubuntu`:
 
     docker::image { 'ubuntu':
-      tag => 'precise'
+      image_tag => 'precise'
     }
 
-Note: images will only install if an image of that name does not already exist.  
+Note: images will only install if an image of that name does not already exist.
 
-You can also remove images you no longer need with:  
+You can also remove images you no longer need with:
 
     docker::image { 'base':
       ensure => 'absent'
     }
 
     docker::image { 'ubuntu':
-      ensure  => 'absent',
-      tag     => 'precise'
+      ensure    => 'absent',
+      image_tag => 'precise'
     }
 
 ### Containers
@@ -64,7 +64,7 @@ Run also contains a number of optional parameters:
       ports        => ['4444', '4555'],
       volumes      => ['/var/lib/couchdb', '/var/log'],
       volumes_from => '6446ea52fbc9',
-      memory_limit => 10485760, # bytes 
+      memory_limit => 10485760, # bytes
       username     => 'example',
       hostname     => 'example.com',
       env          => ['FOO=BAR', 'FOO2=BAR2'],
